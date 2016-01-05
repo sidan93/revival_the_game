@@ -20,13 +20,13 @@ public class MosterSpawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time - startTime > 1 && monsters.Count < SpawnLimit && isSpawn)
+        if (Monster && Target && Time.time - startTime > 1 && monsters.Count < SpawnLimit && isSpawn)
         {
             var new_monster = Instantiate(Monster, Monster.transform.position + new Vector3(0, 50, 0), Monster.transform.rotation) as GameObject;
             var monster = new_monster.GetComponent("Monster") as Monster;
             monster.Target = Target;
             monster.isDestr = true;
-            monster.MaxHealth = Random.Range(50, 200);
+            monster.MaxHealth = Random.Range(monster.MaxHealth - 100, monster.MaxHealth + 100);
             monsters.Add(new_monster);
             startTime = Time.time;
         }

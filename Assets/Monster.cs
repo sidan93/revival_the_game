@@ -1,26 +1,41 @@
 ﻿using UnityEngine;
-using System.Collections;
+using Assets.Units;
+using Assets.Utilities;
 
-public class Monster : MonoBehaviour {
-
+public class Monster : BaseUnit
+{
     public GameObject Target;
-    public float Speed;
     public bool isDestr = false;
 
     public int MaxHealth = 100;
-    private int CurrHealth;
 
     public int Damage = 10;
-    public float LastDamage = 0;
     public float AttackSpeed = 1;
 
 	// Use this for initialization
-	void Start () {
-        CurrHealth = MaxHealth;
+	void Start ()
+    {
+        health = new Health(MaxHealth);
+        attack = new Attack(Damage, AttackSpeed);
+    }
+
+    public int getScore()
+    {
+        return MaxHealth / 100 + 1;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (!isAlive)
+        {
+            if (Target)
+            {
+                Hero hero = Target.GetComponent("Hero") as Hero;
+                hero.Score += getScore();
+            }
+            Destroy(this.gameObject);
+        }
+
         if (Target)
         {
             var move_target = Target.transform.position - transform.position;
@@ -32,20 +47,10 @@ public class Monster : MonoBehaviour {
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject && collision.gameObject.tag == "Bullet" && isDestr)
+        if (collision.gameObject && collision.gameObject.tag == "Hero")
         {
-            var bullet = collision.gameObject.GetComponent("Bullet") as Bullet;
-            if (!bullet.isCalc)
-            {
-                bullet.isCalc = true;
-                CurrHealth -= bullet.Damage;
-                Debug.Log(CurrHealth);
-                if (CurrHealth <= 0)
-                {
-                    bullet.parent.Score++;
-                    Destroy(this.gameObject);
-                }
-            }
+            var hero = collision.gameObject.GetComponent("Hero") as Hero;
+            hero.setDamage(attack.MakeAttack());
         }
     }
 }
