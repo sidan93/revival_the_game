@@ -4,10 +4,6 @@ namespace Assets.Scripts.Weapon
 {
     class BaseMeleeWeapon : BaseWeapon
     {
-        private float lastAttackStart;
-        public float AnimationTime;
-
-        public bool IsAttack { get { return Time.time - lastAttackStart < AnimationTime; } }
 
         protected override void Start()
         {

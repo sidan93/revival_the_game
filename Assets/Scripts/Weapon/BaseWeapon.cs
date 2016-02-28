@@ -10,10 +10,14 @@ namespace Assets.Scripts.Weapon
         public float CurrentDamage;
         protected float Damage { private set; get; }
 
+        protected float lastAttackStart;
+        public float AnimationTime;
+
+        public bool IsAttack { get { return Time.time - lastAttackStart < AnimationTime; } }
+
         protected override void Start()
         {
             Damage = CurrentDamage;
-            Debug.Log(Damage);
         }
 
         /// <summary>

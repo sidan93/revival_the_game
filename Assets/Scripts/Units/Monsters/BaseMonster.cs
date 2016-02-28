@@ -10,7 +10,6 @@ namespace Assets.Scripts.Units.Monsters
         public float DeathTime = 5;
         private LifeTimer deathTime;
 
-        Animator animator;
 
         public delegate void onCollisionStayHero(BaseMonster monster, Hero hero);
         public event onCollisionStayHero eventCollistionStayHero;
@@ -18,7 +17,6 @@ namespace Assets.Scripts.Units.Monsters
         protected override void Start()
         {
             base.Start();
-            animator = this.gameObject.GetComponent<Animator>();
         }
 
         protected override void Update()

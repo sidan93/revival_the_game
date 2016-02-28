@@ -49,6 +49,7 @@ namespace Assets.Scripts.Weapon.Bullet
                 building.ReceiveDamage(Damage);
             }
 
+            Debug.Log(collision.gameObject.tag);
             if (collision.gameObject && LifeTime != 0)
                 LifeTimer.Kill();
         }

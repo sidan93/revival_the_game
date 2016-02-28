@@ -12,12 +12,14 @@ namespace Assets.Scripts.Units
         public float MaxSpeed = 10;
 
         public BaseWeapon Weapon = null;
+        protected Animator animator;
 
         protected override void Start()
         {
             base.Start();
 
             Movement = new BaseMovement(MaxSpeed);
+            animator = this.gameObject.GetComponent<Animator>();
         }
 
         protected override void Update()
