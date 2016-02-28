@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Assets.Units;
-using Assets.Utilities;
-using Assets.Weapons;
-
 namespace Assets.Scripts
 {
     class BaseObject : MonoBehaviour

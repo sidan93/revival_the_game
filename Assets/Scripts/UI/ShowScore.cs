@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Units.Heroes;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class ShowScore : MonoBehaviour {
+class ShowScore : MonoBehaviour {
 
-    public _Hero hero;
+    public Hero hero;
     private Text text;
 
     void Start ()
@@ -15,10 +16,10 @@ public class ShowScore : MonoBehaviour {
     {
 	    if (hero)
         {
-            text.text = "Score: " + hero.Score.ToString();
+            //text.text = "Score: " + hero.Score.ToString();
 
-            if (!hero.isAlive)
-               text.text = "YOU LOSE!!! Score: " + hero.Score.ToString();
+            //if (!hero.isAlive)
+               //text.text = "YOU LOSE!!! Score: " + hero.Score.ToString();
         }
     }
 }
