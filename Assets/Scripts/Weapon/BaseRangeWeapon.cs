@@ -18,6 +18,9 @@ namespace Assets.Scripts.Weapon
         /// </summary>
         public override float Attack(Vector3 Target)
         {
+            if (Bullet == null)
+                return 0;
+
             if (Time.time - lastAttackStart < AnimationTime)
                 return 0;
 

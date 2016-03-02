@@ -48,8 +48,8 @@ namespace Assets.Scripts.Weapon.Bullet
                 var building = collision.gameObject.GetComponent<BaseBuilding>();
                 building.ReceiveDamage(Damage);
             }
-
             Debug.Log(collision.gameObject.tag);
+
             if (collision.gameObject && LifeTime != 0)
                 LifeTimer.Kill();
         }

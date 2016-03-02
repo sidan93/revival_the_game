@@ -10,10 +10,11 @@ namespace Assets.Scripts.Units.Monsters
         public float DeathTime = 5;
         private LifeTimer deathTime;
 
-
         public delegate void onCollisionStayHero(BaseMonster monster, Hero hero);
         public event onCollisionStayHero eventCollistionStayHero;
-        
+
+        public static readonly string MonsterTag = "Monster";
+
         protected override void Start()
         {
             base.Start();

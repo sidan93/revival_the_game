@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Weapon;
+using Assets.Scripts.Factory;
+using Assets.Scripts.Magic;
 
 namespace Assets.Scripts.Units.Heroes
 {
@@ -37,6 +39,15 @@ namespace Assets.Scripts.Units.Heroes
                         Weapon.Attack(Input.mousePosition);
                         animator.SetTrigger("Attack");
                     }
+                }
+
+                // TODO Создаем магию. Надо что-то придумать общее
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    var ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                        Explosion.GetInstantiate(hit.point);
                 }
             }
         }
