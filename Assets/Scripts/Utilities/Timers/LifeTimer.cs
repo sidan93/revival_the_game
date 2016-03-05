@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Utilities
+namespace Assets.Scripts.Utilities.Timers
 {
     class LifeTimer
     {
@@ -19,5 +19,6 @@ namespace Assets.Scripts.Utilities
         {
             LifeTime = -1;
         }
+        
     }
 }

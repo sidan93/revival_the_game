@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.Timers;
 using Assets.Scripts.Movement;
 using Assets.Scripts.Units.Monsters;
 using Assets.Scripts.Buildings;
@@ -48,7 +48,6 @@ namespace Assets.Scripts.Weapon.Bullet
                 var building = collision.gameObject.GetComponent<BaseBuilding>();
                 building.ReceiveDamage(Damage);
             }
-            Debug.Log(collision.gameObject.tag);
 
             if (collision.gameObject && LifeTime != 0)
                 LifeTimer.Kill();

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using Assets.Scripts.Armor;
-using Assets.Scripts.Health;
 using Assets.Scripts.Weapon;
 using Assets.Scripts.Movement;
+using Assets.Scripts.Utilities.Magic;
 
 namespace Assets.Scripts.Units
 {
@@ -14,12 +13,15 @@ namespace Assets.Scripts.Units
         public BaseWeapon Weapon = null;
         protected Animator animator;
 
+        protected MagicBox magics;
+
         protected override void Start()
         {
             base.Start();
 
             Movement = new BaseMovement(MaxSpeed);
             animator = this.gameObject.GetComponent<Animator>();
+            magics = new MagicBox(this);
         }
 
         protected override void Update()

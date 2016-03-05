@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Weapon;
 using Assets.Scripts.Factory;
-using Assets.Scripts.Magic;
+using Assets.Scripts.Magic.Explosion;
 
 namespace Assets.Scripts.Units.Heroes
 {
     class Hero : BaseUnit
     {
+        BaseExplosion explosion;
         protected override void Start()
         {
             base.Start();
+
+            explosion = this.gameObject.AddComponent<BaseExplosion>();
+            explosion.CurrentDamage = 1000;
+            explosion.LifeTime = 4;
+            explosion.ManaCount = 50;
+
+            magics.AddMagic(explosion);
         }
 
         protected override void Update()
@@ -47,7 +55,7 @@ namespace Assets.Scripts.Units.Heroes
                     var ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
-                        Explosion.GetInstantiate(hit.point);
+                        magics.Cast(explosion, hit.point);
                 }
             }
         }

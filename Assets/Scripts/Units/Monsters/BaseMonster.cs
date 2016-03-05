@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using Assets.Scripts.Weapon;
-using Assets.Scripts.Utilities;
+using Assets.Scripts.Utilities.Timers;
 using Assets.Scripts.Units.Heroes;
 
 namespace Assets.Scripts.Units.Monsters

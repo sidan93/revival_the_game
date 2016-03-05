@@ -1,27 +1,27 @@
-﻿using Assets.Scripts.Units.Monsters;
-using System;
-using System.Collections;
+﻿using UnityEngine;
+using Assets.Scripts.Units.Monsters;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityStandardAssets.Effects;
 
-namespace Assets.Scripts.Magic
+namespace Assets.Scripts.Magic.Explosion
 {
-    class Explosion : BaseMagic
+    class Explosion : BaseExplosion
     {
-        public Explosion()
-        {
-            _magicName = "BaseExplosion";
-        }
-
-
         public float explosionForce = 4;
+        public float multiplier = 1;
 
         protected override void Start()
         {
             base.Start();
 
-            float multiplier = GetComponent<ParticleSystemMultiplier>().multiplier;
+            var systems = GetComponentsInChildren<ParticleSystem>();
+            foreach (ParticleSystem system in systems)
+            {
+                system.startSize *= multiplier;
+                system.startSpeed *= multiplier;
+                system.startLifetime *= Mathf.Lerp(multiplier, 1, 0.5f);
+                system.Clear();
+                system.Play();
+            }
 
             float r = 10 * multiplier;
             var cols = Physics.OverlapSphere(transform.position, r);
@@ -36,7 +36,6 @@ namespace Assets.Scripts.Magic
             foreach (var rb in rigidbodies)
             {
                 rb.AddExplosionForce(explosionForce * multiplier, transform.position, r, 1 * multiplier, ForceMode.Impulse);
-                Debug.Log(Damage);
                 if (rb.tag == BaseMonster.MonsterTag)
                     rb.GetComponent<BaseMonster>().ReceiveDamage(Damage);
             }
